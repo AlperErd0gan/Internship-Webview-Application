@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alarm Clock</title>
+    <style>
+        /* Your existing styles */
+    </style>
+</head>
+<body>
+<h1>Set Alarm</h1>
+<p>Enter the date and time for the alarm:</p>
+<input type="date" id="date">
+<input type="time" id="time">
+<button onclick="setAlarm()">Set Alarm</button>
+<p id="timeLeft"></p>
+<p id="countdown"></p> <!-- Added element for countdown -->
+
+<script type="text/javascript">
+    var countdownInterval;
+
+    function setAlarm() {
+        var date = document.getElementById('date').value;
+        var time = document.getElementById('time').value;
+
+        if (date === '' || time === '') {
+            alert('Please enter both date and time.');
+            return;
+        }
+
+        var dateTime = date + 'T' + time;
+        Android.setAlarm(dateTime);
+    }
+
+    function updateTimeLeft(timeLeft) {
+        document.getElementById('timeLeft').innerText = "Time left until alarm: " + timeLeft;
+
+        // Extract hours, minutes, and seconds from timeLeft
+        var parts = timeLeft.split(':');
+        var hours = parseInt(parts[0], 10);
+        var minutes = parseInt(parts[1], 10);
+        var seconds = parseInt(parts[2], 10);
+
+        // Convert total time left to seconds
+        var totalSeconds = hours * 3600 + minutes * 60 + seconds;
+
+        // Start the countdown
+        startCountdown(totalSeconds);
+    }
+
+    function startCountdown(seconds) {
+        if (countdownInterval) {
+            clearInterval(countdownInterval);
+        }
+
+        countdownInterval = setInterval(function() {
+            if (seconds <= 0) {
+                clearInterval(countdownInterval);
+                document.getElementById('countdown').textContent = 'Alarm is now!'; // You can change this text if needed
+                return;
+            }
+            updateCountdown(seconds);
+            seconds--;
+        }, 1000);
+    }
+
+    function updateCountdown(seconds) {
+        var minutes = Math.floor(seconds / 60);
+        var remainingSeconds = seconds % 60;
+        document.getElementById('countdown').textContent = minutes + 'm ' + remainingSeconds + 's';
+    }
+</script>
+</body>
+</html>

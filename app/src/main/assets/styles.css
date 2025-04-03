@@ -1,0 +1,254 @@
+/* Logo Styles */
+.logo {
+    max-width: 150px; /* Adjust width as needed */
+    max-height: 150px; /* Adjust height as needed */
+    width: auto; /* Maintain aspect ratio */
+    height: auto; /* Maintain aspect ratio */
+}
+
+/* Splash Screen Styles */
+.splash-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: #000; /* Black background */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000; /* Ensure it's on top of everything */
+    color: #fff; /* White text color */
+    font-size: 2em;
+    text-align: center;
+    opacity: 1;
+    transition: opacity 1s ease-out;
+}
+
+@keyframes slideIn {
+    0% {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideOut {
+    0% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    100% {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+}
+
+.splash-screen .logo {
+    animation: slideIn 1s ease-in-out forwards, slideOut 1s 2.5s ease-in-out forwards;
+}
+
+/* Main Content Styles */
+body {
+    background: rgb(2,0,36);
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(233,31,77,1) 70%, rgba(255,164,0,1) 100%);
+    color: white;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    transition: background 0.5s ease; /* Smooth transition for background change */
+}
+
+/* Sidebar Styles */
+.sidebar {
+    background: #333;
+    padding: 20px;
+    height: 100vh; /* Full viewport height */
+    width: 150px; /* Sidebar width */
+    position: fixed;
+    top: 0;
+    left: -200px; /* Initially hidden to the left */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start; /* Start items from the top */
+    gap: 10px; /* Space between items */
+    transition: left 0.3s ease; /* Smooth transition for sidebar sliding */
+    overflow-y: auto; /* Enable vertical scrolling if content overflows */
+}
+
+/* Ensure content inside the sidebar is scrollable */
+.sidebar-content {
+    width: 100%; /* Full width of sidebar */
+}
+
+/* Add styles for when the sidebar is open */
+.sidebar.open {
+    left: 0; /* Slide sidebar in */
+}
+
+/* Add styles for the content inside the sidebar to ensure it scrolls */
+.sidebar-content {
+    flex: 1; /* Allow content to take available space */
+}
+
+
+/* Toggle Button Styles */
+.toggle-btn {
+    position: absolute;
+    top: 20px;
+    left: 10px; /* Position at the edge of the screen */
+    background-color: #444;
+    border: none;
+    color: white;
+    padding: 2px 8px; /* Smaller padding for smaller button */
+    border-radius: 50px;
+    cursor: pointer;
+    z-index: 1000; /* Ensure the button is on top */
+    transition: left 0.3s ease; /* Smooth transition for button sliding */
+    font-size: 0.6em; /* Smaller font size */
+    width: 30px; /* Smaller width */
+    height: 30px; /* Smaller height */
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Center the content */
+}
+
+.toggle-btn.open {
+    left: 200px; /* Adjust button position when sidebar is open */
+}
+
+/* Button Styles */
+button {
+    background-color: #444;
+    border: none;
+    color: white; /* Simple white text */
+    padding: 10px 20px; /* Padding for buttons */
+    border-radius: 50px; /* Make buttons round */
+    transition: background-color 0.3s ease; /* Smooth transition for background color */
+    font-size: 1em;
+    cursor: pointer;
+    width: 100%; /* Full width of the sidebar */
+}
+
+button:hover {
+    background-color: #555; /* Change button background color on hover */
+}
+
+button:focus {
+    outline: none;
+    background-color: #ddd; /* Change as needed */
+}
+
+
+/* Search Bar Styles */
+.search-bar {
+    width: 100%; /* Full width of the sidebar */
+    padding: 8px; /* Padding inside the search bar */
+    border: none; /* Remove default border */
+    border-radius: 5px; /* Rounded corners */
+    margin-bottom: 10px; /* Space below the search bar */
+    box-sizing: border-box; /* Include padding in the width */
+    background: #333; /* Black background for the search bar */
+    color: white; /* Text color inside the search bar */
+    z-index: 10; /* Ensure it's above other content */
+}
+
+.search-bar::placeholder {
+    color: #ccc; /* Light color for placeholder text */
+}
+
+.search-bar:focus {
+    outline: none; /* Remove default focus outline */
+    border: 1px solid #666; /* Optional border color on focus */
+}
+
+/* Main Buttons Styles */
+.main-buttons {
+    position: fixed; /* Ensure the buttons stay in place */
+    top: 50%; /* Center vertically */
+    left: 70%; /* Center horizontally */
+    transform: translate(-50%, -50%); /* Adjust for true center positioning */
+    display: grid; /* Use grid layout */
+    grid-template-columns: repeat(3, 1fr); /* Three columns */
+    gap: 10px; /* Space between buttons */
+    z-index: 100; /* Ensure buttons are above other content */
+    max-height: 80vh; /* Set a maximum height for the container */
+    overflow-y: auto; /* Enable vertical scrolling if needed */
+    padding: 10px; /* Add padding around the container */
+    background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    border-radius: 10px; /* Optional: Add rounded corners for aesthetics */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Optional: Add shadow for better visibility */
+}
+
+.main-buttons button {
+    background-color: rgba(255, 255, 255, 0.2); /* Transparent background */
+    border: none;
+    color: white; /* White text */
+    padding: 20px; /* Adjust padding for better fit */
+    border-radius: 50px;
+    transition: background-color 0.3s ease, border 0.3s ease; /* Smooth transition for background color and border */
+    font-size: 1em;
+    cursor: pointer;
+    width: 100%; /* Full width of container */
+    max-width: 200px; /* Set a max-width for buttons */
+    box-sizing: border-box; /* Include padding in width */
+    outline: none; /* Remove default focus outline */
+}
+
+.main-buttons button:hover {
+    background-color: rgba(255, 255, 255, 0.3); /* Slightly less transparent on hover */
+}
+
+/* Focused Button Styles */
+.main-buttons button:focus {
+    background-color: rgba(255, 255, 255, 0.4); /* Highlight background color */
+    border: 2px solid #f0f0f0; /* Add border to highlight focus */
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.6); /* Optional: Add shadow to highlight focus */
+}
+
+
+
+/* Welcome Logo Styles */
+.welcome-logo {
+    position: absolute;
+    left: 30%; /* Center horizontally */
+    top: 50%; /* Center vertically */
+    transform: translate(-50%, -50%); /* Center exactly in the middle */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Small Circle Buttons Styles */
+.small-buttons {
+    margin-top: 10px; /* Space between logo and buttons */
+    display: flex;
+    gap: 10px; /* Space between buttons */
+    align-items: center; /* Align buttons vertically centered */
+}
+
+.small-btn {
+    background-color: rgba(255, 255, 255, 0.2);  /* Make the button background transparent */
+    border: 2px solid #fff; /* Add a border to make it visible */
+    color: white;
+    width: 50px; /* Button diameter */
+    height: 50px; /* Button diameter */
+    border-radius: 50%; /* Circular shape */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease, border-color 0.3s ease; /* Smooth transition for background and border color */
+    font-size: 0.8em; /* Smaller font size */
+}
+
+.small-btn:hover {
+    background-color: rgba(255, 255, 255, 0.1); /* Slightly visible on hover */
+    border-color: #ddd; /* Change border color on hover */
+}

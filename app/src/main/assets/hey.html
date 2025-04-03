@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>WebView Example</title>
+    <script src="main.js"></script>
+    <style>
+        body {
+            background: rgb(2,0,36);
+            background: -moz-linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(151,90,170,1) 79%, rgba(255,164,0,1) 100%);
+            background: -webkit-linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(151,90,170,1) 79%, rgba(255,164,0,1) 100%);
+            background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(151,90,170,1) 79%, rgba(255,164,0,1) 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#020024",endColorstr="#ffa400",GradientType=1);
+            font-family: Arial, sans-serif; /* For better styling */
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center; /* Center horizontally */
+            align-items: center; /* Center vertically */
+            height: 100vh; /* Full viewport height */
+            flex-direction: column; /* Stack content vertically */
+        }
+
+        h1 {
+            color: #f0c967;
+            margin-bottom: 20px; /* Add space below the header */
+        }
+
+        .back-button {
+            background-color: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white; /* Simple white text */
+            padding: 15px 30px; /* Increase padding for larger clickable area */
+            border-radius: 50px; /* Make buttons round */
+            transition: background-color 0.3s ease; /* Smooth transition for background color */
+            font-size: 1em;
+            cursor: pointer;
+        }
+
+        .back-button:hover {
+            background-color: #555; /* Change button background color on hover */
+        }
+    </style>
+
+</head>
+<body>
+<h1>Hey!</h1>
+<button class="back-button" onclick="goBack()">Go Back</button>
+
+<script>
+    function goBack() {
+        window.location.href = 'index.html'; // Redirect to index.html
+    }
+</script>
+</body>
+</html>

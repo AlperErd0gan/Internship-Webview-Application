@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Menu</title>
+    <script src="main.js" defer></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="splash-screen">
+    <img src="file:///android_asset/logo.png" alt="App Logo" class="logo" tabindex="0">
+</div>
+<button class="toggle-btn" onclick="toggleSidebar()" tabindex="1">☰</button>
+<div class="sidebar">
+    <input type="text" class="search-bar" placeholder="Search..." tabindex="2">
+    <div class="search-results"></div>
+    <button class="volume-up" onclick="volumeUp()" tabindex="3">Volume Up</button>
+    <button class="volume-down" onclick="volumeDown()" tabindex="4">Volume Down</button>
+    <button class="youtube" onclick="callYoutube()" tabindex="5">YouTube</button>
+    <button class="call-html" onclick="callHTML()" tabindex="6">Call HTML</button>
+    <button onclick="navigateToSetAlarm()" tabindex="7">Timer</button>
+    <button onclick="navigateToAlarm()" tabindex="8">Alarm</button>
+    <button tabindex="9">Dummy Button</button>
+    <button tabindex="9">Dummy Button</button>
+    <button tabindex="9">Dummy Button</button>
+    <!-- Add more buttons as needed -->
+</div>
+<div class="main-buttons">
+    <button class="volume-up" onclick="volumeUp()" tabindex="10">Volume Up</button>
+    <button class="volume-down" onclick="volumeDown()" tabindex="11">Volume Down</button>
+    <button class="youtube" onclick="callYoutube()" tabindex="12">YouTube</button>
+    <button class="call-html" onclick="callHTML()" tabindex="13">Call HTML</button>
+    <button onclick="navigateToSetAlarm()" tabindex="14">Timer</button>
+    <button onclick="navigateToAlarm()" tabindex="15">Alarm</button>
+    <button tabindex="16">Dummy Button</button>
+    <button tabindex="9">Dummy Button</button>
+    <button tabindex="9">Dummy Button</button>
+    <!-- Add more buttons as needed -->
+</div>
+<div class="welcome-logo">
+    <img src="file:///android_asset/logo.png" alt="App Logo" class="logo" tabindex="17">
+    <div class="small-buttons">
+        <button class="small-btn settings-btn" onclick="openSettings()" tabindex="18">Se</button>
+        <button class="small-btn channels-btn" onclick="openChannels()" tabindex="19">TV</button>
+    </div>
+</div>
+</body>
+</html>

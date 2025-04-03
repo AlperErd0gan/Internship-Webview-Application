@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Set Timer</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+        }
+        #timerForm {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        label {
+            font-size: 1.2em;
+        }
+        input[type="range"] {
+            width: 100%;
+        }
+        .slider-value, .countdown {
+            text-align: center;
+            font-size: 1.2em;
+        }
+        button {
+            padding: 10px;
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+<div id="timerForm">
+    <label for="timerRange">Set Timer:</label>
+    <input type="range" id="timerRange" min="0" max="60" step="1" value="0" aria-label="Set Timer" tabindex="1" onkeydown="handleKeyDown(event)" oninput="updateSliderValue()">
+    <div id="sliderValue" class="slider-value">0s</div>
+    <button type="button" onclick="confirmTimer()" tabindex="2">Confirm Timer</button>
+</div>
+<div id="countdown" class="countdown"></div>
+
+<script type="text/javascript">
+    let countdownInterval;
+
+    function updateSliderValue() {
+        var slider = document.getElementById('timerRange');
+        var value = slider.value;
+        document.getElementById('sliderValue').textContent = value + 's';
+    }
+
+    function handleKeyDown(event) {
+        var slider = document.getElementById('timerRange');
+        if (event.key === "ArrowDown") {
+            event.preventDefault();
+            // Move focus to the Confirm Timer button
+            document.querySelector('button[tabindex="2"]').focus();
+        }
+    }
+
+    function confirmTimer() {
+        var timerSeconds = document.getElementById('timerRange').value;
+        if (timerSeconds !== null) {
+            Android.setTimer(parseInt(timerSeconds));
+            startCountdown(parseInt(timerSeconds));
+        } else {
+            alert('Please set a valid time.');
+        }
+    }
+
+    function startCountdown(seconds) {
+        clearInterval(countdownInterval);
+        updateCountdown(seconds);
+        countdownInterval = setInterval(() => {
+            seconds--;
+            if (seconds <= 0) {
+                clearInterval(countdownInterval);
+                document.getElementById('countdown').textContent = 'Time is up!';
+            } else {
+                updateCountdown(seconds);
+            }
+        }, 1000);
+    }
+
+    function updateCountdown(seconds) {
+        var minutes = Math.floor(seconds / 60);
+        var remainingSeconds = seconds % 60;
+        document.getElementById('countdown').textContent = minutes + 'm ' + remainingSeconds + 's';
+    }
+
+    // Initial call to update the slider value display
+    updateSliderValue();
+</script>
+</body>
+</html>
